@@ -87,6 +87,7 @@
       .img-aluno img {
         border: 1px solid #8f8f8fa2;
         padding: 2px;
+        width: 150px;
       }
 
       .nome-aluno {
@@ -174,7 +175,7 @@
       .container {
         margin-left: 350px;
         padding: 20px;
-      }      
+      }
 
       .avisos-header {
         display: flex;
@@ -188,8 +189,6 @@
       }
 
       .matricula {
-        /*display: flex;*/
-        
         justify-content: center;
         align-items: center;
         height: 80vh;
@@ -209,7 +208,7 @@
       .body-modal {
         text-align: center;
         margin: 20px;
-      }     
+      }
 
       .row {
         display: flex;
@@ -248,14 +247,6 @@
         gap: 5px;
       }
 
-      .agenda {
-        
-      }
-
-      .seguranca {
-        
-      }
-
       .seguranca h4 {
         display: flex;
         justify-content: center;
@@ -270,20 +261,11 @@
         gap: 20px;
       }
 
-      .solicitacoes {
-        
-      }
-
       .biblioteca {
-        
         /*display: flex;*/
         justify-content: center;
         align-items: center;
         height: 80vh;
-      }
-
-      .upload {
-        
       }
 
       .title {
@@ -311,6 +293,21 @@
         gap: 20px;
       }
 
+      .options-solicitacao {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        border: 1px solid #7e7e7e;
+        padding: 20px;
+        gap: 60px;
+      }
+
+      .options-solicitacao .card {
+        width: 200px;
+        justify-content: center;
+      }
+
       .options-gap {
         flex: 1;
         text-align: center;
@@ -327,8 +324,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 50px;       
-        margin: 30px; 
+        gap: 50px;
+        margin: 30px;
       }
 
       .options-plano .card {
@@ -337,16 +334,76 @@
         justify-content: center;
       }
 
-      .planos-ensino {
-        
-      }
-
       .matriz-ingles {
-        
-        /*display: flex;*/
         justify-content: center;
         align-items: center;
         height: 80vh;
+      }
+
+      .navbar-mobile {
+        display: none;
+      }
+
+      .footer-mobile {
+        display: none;
+      }
+
+      .sidebar-mobile {
+        display: none;
+      }
+
+      @media (max-width: 1219px) {
+        .navbar {
+          display: none;
+        }
+
+        .navbar-mobile {
+          display: flex;
+          gap: 140px;
+          align-items: center;
+          padding: 10px 20px;
+          box-shadow: 2px 2px 10px #7e7e7e;
+          margin-right: 2px; /* Adiciona espaço para a borda da sidebar */
+        }
+
+        .navbar-mobile i {
+          font-size: 25px;
+          padding: 10px;
+        }
+
+        .navbar-mobile i:hover {
+          cursor: pointer;
+          background-color: #a9a6a6;
+          color: #fff;
+        }
+
+        .nav-links-mobile {
+          color: #7e7e7e;
+          margin: 0;
+          padding: 0;
+          list-style: none;
+        }
+
+        .sidebar {
+          display: none;
+        }
+
+        .sidebar-mobile {
+          display: none;
+          height: calc(100% - 70px); /* Ajusta a altura da sidebar */
+          width: 280px;
+          position: fixed;
+          top: 75px; /* Alinha a sidebar abaixo da navbar */
+          left: 0;
+          border-right: 1px solid #8f8f8fa2;
+          padding-top: 20px;
+          overflow-x: hidden;
+          padding: 30px;
+        }
+
+        .container {
+          margin: 0;
+        }
       }
     </style>
   </head>
@@ -369,9 +426,26 @@
       <div class="logo2"><img src="../IMG/logocps.png" alt="" /></div>
     </div>
 
-    <div class="sidebar">
+    <div class="navbar-mobile">
+      <i class="fa-solid fa-bars" id="openSidebar"></i>
+      <ul class="nav-links">
+        <li>
+          <div class="unidade">
+            <span>Faculdade de Tecnologia de Cotia</span>
+            <br />
+            <span>
+              Tecnologia em Desenvolvimento de Software Multiplataforma - Em
+              Curso -
+              <b>Noite</b>
+            </span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="sidebar-mobile" id="sidebarMobile">
       <div class="logout">
-        <a href="../index.html">
+        <a href="../index.html">                                                                                                                                                                                                                                                                                                                                                                                                                                                    
           <span>Sair</span>
           <i class="fa-solid fa-power-off sair-icon"></i>
         </a>
@@ -386,7 +460,7 @@
       <div class="nome-aluno">
         <h3>Arthur Souza Sepp</h3>
         <p>E-mail:</p>
-        <p>arthur.sepp@fatec.sp.gov.br</p>
+        <p>arthur.****@fatec.sp.gov.br</p>
         <p>RA: 2701392313014</p>
         <p>Ciclo: 5</p>
       </div>
@@ -414,23 +488,125 @@
       <div class="dropdown">
         <div class="btndrop">
           <button class="dropbtn" onclick="toggleDropdown()">
-            <i class="fa-solid fa-folder"></i> Menu
+            <i class="fa-solid fa-folder" id="iconFolder"></i> Menu
           </button>
         </div>
         <div class="dropdown-content" id="dropdown-content">
-          <div href="" id="avisoSide"> <i class="fas fa-info-circle"></i> Avisos</div>
-          <div href="" id="matriculaSide"> <i class="far fa-edit"></i> Matrícula</div>
-          <div href="" id="consultaSide"> <i class="fas fa-search"></i> Consultas</div>
-          <div href="" id="agendaSide"> <i class="far fa-calendar"></i> Agenda</div>
-          <div href="" id="segurancaSide"> <i class="fas fa-lock"></i> Segurança</div>
-          <div href="" id="solicitacoesSide"> <i class="fas fa-file"></i> Solicitações</div>
-          <div href="" id="bibliotecaSide"> <i class="fa-solid fa-book"></i> Biblioteca</div>
-          <div href="" id="uploadSide"> <i class="fa-solid fa-upload"></i> Upload de arquivos</div>
+          <div href="" id="avisoSide">
+            <i class="fas fa-info-circle"></i> Avisos
+          </div>
+          <div href="" id="matriculaSide">
+            <i class="far fa-edit"></i> Matrícula
+          </div>
+          <div href="" id="consultaSide">
+            <i class="fas fa-search"></i> Consultas
+          </div>
+          <div href="" id="agendaSide">
+            <i class="far fa-calendar"></i> Agenda
+          </div>
+          <div href="" id="segurancaSide">
+            <i class="fas fa-lock"></i> Segurança
+          </div>
+          <div href="" id="solicitacoesSide">
+            <i class="fas fa-file"></i> Solicitações
+          </div>
+          <div href="" id="bibliotecaSide">
+            <i class="fa-solid fa-book"></i> Biblioteca
+          </div>
+          <div href="" id="uploadSide">
+            <i class="fa-solid fa-upload"></i> Upload de arquivos
+          </div>
           <div href="" id="planoEnsinoSide">
             <i class="fa-solid fa-graduation-cap"></i>
             Planos de ensino
           </div>
-          <div href="" id="matrizSide"> <i class="fas fa-flag-usa"></i> Matriz em inglês</div>
+          <div href="" id="matrizSide">
+            <i class="fas fa-flag-usa"></i> Matriz em inglês
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="logout">
+        <a href="../index.html">
+          <span>Sair</span>
+          <i class="fa-solid fa-power-off sair-icon"></i>
+        </a>
+      </div>
+
+      <br />
+
+      <div class="img-aluno">
+        <img src="../IMG/imgAluno.jpg" alt="" />
+      </div>
+
+      <div class="nome-aluno">
+        <h3>Arthur Souza Sepp</h3>
+        <p>E-mail:</p>
+        <p>arthur.****@fatec.sp.gov.br</p>
+        <p>RA: 2701392313014</p>
+        <p>Ciclo: 5</p>
+      </div>
+      <hr />
+
+      <h3>Rendimento no curso:</h3>
+
+      <div class="dados-curso">
+        <div><span>PP:</span><span>36,61%</span></div>
+        <div><span>PR:</span><span>7,57</span></div>
+        <div><span>Maior PR:</span><span>0,00</span></div>
+        <div><span>PP (intercâmbio):</span><span>28,05836%</span></div>
+        <div><span>PR (intercâmbio):</span><span>7,86000</span></div>
+      </div>
+
+      <h4>Prazo de Integralização:</h4>
+      <div class="integralizacao">
+        <span>Cursado: 3 | </span>
+        <span>Máximo: 10 | </span>
+        <span>Faltam: 7</span>
+      </div>
+      <br />
+      <hr />
+
+      <div class="dropdown">
+        <div class="btndrop">
+          <button class="dropbtn" onclick="toggleDropdown()">
+            <i class="fa-solid fa-folder" id="iconFolder"></i> Menu
+          </button>
+        </div>
+        <div class="dropdown-content" id="dropdown-content">
+          <div href="" id="avisoSide">
+            <i class="fas fa-info-circle"></i> Avisos
+          </div>
+          <div href="" id="matriculaSide">
+            <i class="far fa-edit"></i> Matrícula
+          </div>
+          <div href="" id="consultaSide">
+            <i class="fas fa-search"></i> Consultas
+          </div>
+          <div href="" id="agendaSide">
+            <i class="far fa-calendar"></i> Agenda
+          </div>
+          <div href="" id="segurancaSide">
+            <i class="fas fa-lock"></i> Segurança
+          </div>
+          <div href="" id="solicitacoesSide">
+            <i class="fas fa-file"></i> Solicitações
+          </div>
+          <div href="" id="bibliotecaSide">
+            <i class="fa-solid fa-book"></i> Biblioteca
+          </div>
+          <div href="" id="uploadSide">
+            <i class="fa-solid fa-upload"></i> Upload de arquivos
+          </div>
+          <div href="" id="planoEnsinoSide">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Planos de ensino
+          </div>
+          <div href="" id="matrizSide">
+            <i class="fas fa-flag-usa"></i> Matriz em inglês
+          </div>
         </div>
       </div>
     </div>
@@ -510,14 +686,11 @@
       </div>
 
       <div class="consultas" id="consulta">
-        <div style="text-align: center">
-          <h4>Onde você deseja ir?</h4>
+        <div class="title">
+          <h3>Onde você deseja ir?</h3>
         </div>
 
-        <hr />
-        <br />
-
-        <div class="row">
+        <div class="options">
           <div class="card">
             <span>Histórico</span>
             <i class="fas fa-history"></i>
@@ -622,8 +795,10 @@
       </div>
 
       <div class="seguranca" id="seguranca">
-        <h3>O que você deseja fazer?</h3>
-        <div class="seguranca-options">
+        <div class="title">
+          <h3>O que você deseja fazer?</h3>
+        </div>
+        <div class="options">
           <div class="card">
             <h4>
               Trocar senha
@@ -645,7 +820,7 @@
           <h3>O que você deseja fazer?</h3>
         </div>
 
-        <div class="options">
+        <div class="options-solicitacao">
           <div class="card">
             <h4>Rev. de nota, falta e exame geral</h4>
           </div>
@@ -728,7 +903,6 @@
 
           <!-- Linha 2 -->
           <div class="options-plano">
-
             <div class="card">
               <h4>ISW031</h4>
               <p>Design digital</p>
@@ -738,16 +912,14 @@
               <h4>ISW032</h4>
               <p>
                 Integração e
-                <br>
+                <br />
                 entrega contínua
               </p>
             </div>
 
             <div class="card">
               <h4>ISW033</h4>
-              <p>
-                Laboratório de desenvolvimento web
-              </p>
+              <p>Laboratório de desenvolvimento web</p>
             </div>
           </div>
 
@@ -767,13 +939,13 @@
           </div>
 
           <div class="body-modal">
-            <p>              
-              Não há matrizes em inglês na sua unidade.
-            </p>
+            <p>Não há matrizes em inglês na sua unidade.</p>
           </div>
         </div>
       </div>
     </div>
+
+    <div class="footer-mobile"></div>
 
     <script src="../JS/scriptHome.js"></script>
   </body>
