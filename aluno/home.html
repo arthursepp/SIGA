@@ -155,15 +155,16 @@
         margin-bottom: 50px;
       }
 
-      .dropdown-content a {
+      .dropdown-content div {
         color: black;
         padding: 12px 16px;
         text-decoration: none;
         display: block;
       }
 
-      .dropdown-content a:hover {
+      .dropdown-content div:hover {
         background-color: #f1f1f1;
+        cursor: pointer;
       }
 
       .show {
@@ -173,11 +174,7 @@
       .container {
         margin-left: 350px;
         padding: 20px;
-      }
-
-      .avisos {
-        display: none;
-      }
+      }      
 
       .avisos-header {
         display: flex;
@@ -192,7 +189,7 @@
 
       .matricula {
         /*display: flex;*/
-        display: none;
+        
         justify-content: center;
         align-items: center;
         height: 80vh;
@@ -210,12 +207,9 @@
       }
 
       .body-modal {
+        text-align: center;
         margin: 20px;
       }     
-
-      .consultas {
-        display: none;
-      }
 
       .row {
         display: flex;
@@ -228,12 +222,131 @@
         padding: 20px;
         box-shadow: 0px 5px 5px #8f8f8fa2;
         border-radius: 15px;
+        border-top: 1px solid #8f8f8fa2;
         transition: transform 0.3s;
+        width: fit-content;
+        height: fit-content;
+        text-align: center;
       }
 
       .card:hover {
         transform: scale(1.15);
         cursor: pointer;
+      }
+
+      .dados-prova {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 40px;
+        max-width: 450px;
+        border: 2px solid #000;
+      }
+
+      .provas {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .agenda {
+        
+      }
+
+      .seguranca {
+        
+      }
+
+      .seguranca h4 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        padding: 10px;
+      }
+
+      .seguranca-options {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+      }
+
+      .solicitacoes {
+        
+      }
+
+      .biblioteca {
+        
+        /*display: flex;*/
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      }
+
+      .upload {
+        
+      }
+
+      .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+      }
+
+      .options-general {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #7e7e7e;
+        border-radius: 20px;
+      }
+
+      .options {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+        border: 1px solid #7e7e7e;
+        padding: 20px;
+        gap: 20px;
+      }
+
+      .options-gap {
+        flex: 1;
+        text-align: center;
+        padding: 20px;
+      }
+
+      .options-plano-general {
+        border: 1px solid #7e7e7e;
+        border-radius: 20px;
+        margin-top: 30px;
+      }
+
+      .options-plano {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 50px;       
+        margin: 30px; 
+      }
+
+      .options-plano .card {
+        height: 150px;
+        width: 200px;
+        justify-content: center;
+      }
+
+      .planos-ensino {
+        
+      }
+
+      .matriz-ingles {
+        
+        /*display: flex;*/
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
       }
     </style>
   </head>
@@ -301,22 +414,23 @@
       <div class="dropdown">
         <div class="btndrop">
           <button class="dropbtn" onclick="toggleDropdown()">
-            <i class="far fa-folder"></i> Menu
+            <i class="fa-solid fa-folder"></i> Menu
           </button>
         </div>
         <div class="dropdown-content" id="dropdown-content">
-          <a href=""> <i class="fas fa-info-circle"></i> Avisos</a>
-          <a href=""> <i class="far fa-edit"></i> Matrícula</a>
-          <a href=""> <i class="fas fa-search"></i> Consultas</a>
-          <a href=""> <i class="far fa-calendar"></i> Agenda</a>
-          <a href=""> <i class="fas fa-lock"></i> Segurança</a>
-          <a href=""> <i class="fas fa-file"></i> Solicitações</a>
-          <a href=""> <i class="fa-solid fa-book"></i> Biblioteca</a>
-          <a href=""> <i class="fa-solid fa-upload"></i> Upload de arquivos</a>
-          <a href="">
-            <i class="fa-solid fa-graduation-cap"></i> Planos de ensino</a
-          >
-          <a href=""> <i class="fas fa-flag-usa"></i> Matriz em inglês</a>
+          <div href="" id="avisoSide"> <i class="fas fa-info-circle"></i> Avisos</div>
+          <div href="" id="matriculaSide"> <i class="far fa-edit"></i> Matrícula</div>
+          <div href="" id="consultaSide"> <i class="fas fa-search"></i> Consultas</div>
+          <div href="" id="agendaSide"> <i class="far fa-calendar"></i> Agenda</div>
+          <div href="" id="segurancaSide"> <i class="fas fa-lock"></i> Segurança</div>
+          <div href="" id="solicitacoesSide"> <i class="fas fa-file"></i> Solicitações</div>
+          <div href="" id="bibliotecaSide"> <i class="fa-solid fa-book"></i> Biblioteca</div>
+          <div href="" id="uploadSide"> <i class="fa-solid fa-upload"></i> Upload de arquivos</div>
+          <div href="" id="planoEnsinoSide">
+            <i class="fa-solid fa-graduation-cap"></i>
+            Planos de ensino
+          </div>
+          <div href="" id="matrizSide"> <i class="fas fa-flag-usa"></i> Matriz em inglês</div>
         </div>
       </div>
     </div>
@@ -395,14 +509,13 @@
         </div>
       </div>
 
-      <div class="consultas" id="consultas">
-
-        <div style="text-align: center;">
-            <h4>Onde você deseja ir?</h4>
+      <div class="consultas" id="consulta">
+        <div style="text-align: center">
+          <h4>Onde você deseja ir?</h4>
         </div>
 
-        <hr>
-        <br>
+        <hr />
+        <br />
 
         <div class="row">
           <div class="card">
@@ -441,24 +554,225 @@
         <h4>Calendário de provas:</h4>
 
         <div class="provas">
+          <p>
+            <b>ESM100 </b>
+            - Estágio supervisionado em desenvolvimento de software
+            multiplataforma
+          </p>
+          <span> Data: 27/11/2024 </span>
+          <span>
+            <hr />
+          </span>
 
-            <ul>
-                <li></li>
-            </ul>            
+          <p>
+            <b>IESO12 </b>
+            - Engenharia de Software II
+          </p>
+          <span> Data: 25/11/2024 </span>
 
+          <span>
+            <hr />
+          </span>
+
+          <p>
+            <b>ILPO38 </b>
+            - Programação para Dispositivos Móveis I
+          </p>
+          <span>Data: 00/00/2024</span>
+          <span>
+            <hr />
+          </span>
+
+          <p>
+            <b>ISWO31</b>
+            - Design Digital
+          </p>
+          <span>Data: 00/00/2024</span>
+          <span>
+            <hr />
+          </span>
+
+          <p>
+            <b>ISWO32</b>
+            - Integração e Entrega Contínua
+          </p>
+          <span>Data: 00/00/2024</span>
+          <span>
+            <hr />
+          </span>
+
+          <p>
+            <b>ISWO33</b>
+            - Laboratório de Desenvolvimento Web
+          </p>
+          <span>Data: 00/00/2024</span>
+          <span>
+            <hr />
+          </span>
+
+          <p>
+            <b>MET004</b>
+            - Estatística Aplicada
+          </p>
+          <span>Data: 00/00/2024</span>
+          <span>
+            <hr />
+          </span>
         </div>
-
       </div>
 
-      <div class="seguranca" id="seguranca"></div>
+      <div class="seguranca" id="seguranca">
+        <h3>O que você deseja fazer?</h3>
+        <div class="seguranca-options">
+          <div class="card">
+            <h4>
+              Trocar senha
+              <i class="fa-solid fa-key" style="margin-left: 5px"></i>
+            </h4>
+          </div>
 
-      <div class="solicitacoes" id="solicitacoes"></div>
+          <div class="card">
+            <h4>
+              Trocar e-mail
+              <i class="fa-regular fa-envelope" style="margin-left: 5px"></i>
+            </h4>
+          </div>
+        </div>
+      </div>
 
-      <div class="upload" id="upload"></div>
+      <div class="solicitacoes" id="solicitacao">
+        <div class="solicitacoes-title">
+          <h3>O que você deseja fazer?</h3>
+        </div>
 
-      <div class="planos-ensino" id="planosEnsino"></div>
+        <div class="options">
+          <div class="card">
+            <h4>Rev. de nota, falta e exame geral</h4>
+          </div>
 
-      <div class="matriz-ingles" id="matrizIngles"></div>
+          <div class="card">
+            <h4>Solicitação de documentos</h4>
+          </div>
+
+          <div class="card">
+            <h4>Regime de exercícios domiciliares</h4>
+          </div>
+
+          <div class="card">
+            <h4>Aproveitamento de competência</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="biblioteca" id="biblioteca">
+        <div class="modal">
+          <div class="header-modal">
+            <h4>Aviso</h4>
+          </div>
+
+          <div class="body-modal">
+            <p>
+              A biblioteca encontra-se fechada neste momento.
+              <br />
+              Por favor, tente novamente alguma outra hora.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="upload" id="upload">
+        <div class="title">
+          <h4>O que você deseja fazer?</h4>
+        </div>
+
+        <div class="options">
+          <div class="card">
+            <h4>Comprovante/atestado de vacinação: COVID-19</h4>
+          </div>
+        </div>
+      </div>
+
+      <div class="planos-ensino" id="planoEnsino">
+        <div class="title">
+          <h3>Sua atual grade de matérias é essa:</h3>
+        </div>
+
+        <div class="options-plano-general">
+          <!-- Linha 1 -->
+          <div class="options-plano">
+            <div class="card">
+              <h4>ESM100A</h4>
+              <p>
+                Estágio supervisionado
+                <br />
+                em desenvolvimento de
+                <br />
+                software multiplataforma
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>IESO12A</h4>
+              <p>Engenharia de Software II</p>
+            </div>
+
+            <div class="card">
+              <h4>ILPO38A</h4>
+              <p>
+                Programação para
+                <br />
+                Dispositivos Móveis I
+              </p>
+            </div>
+          </div>
+
+          <!-- Linha 2 -->
+          <div class="options-plano">
+
+            <div class="card">
+              <h4>ISW031</h4>
+              <p>Design digital</p>
+            </div>
+
+            <div class="card">
+              <h4>ISW032</h4>
+              <p>
+                Integração e
+                <br>
+                entrega contínua
+              </p>
+            </div>
+
+            <div class="card">
+              <h4>ISW033</h4>
+              <p>
+                Laboratório de desenvolvimento web
+              </p>
+            </div>
+          </div>
+
+          <div class="options-plano">
+            <div class="card">
+              <h4>MET004</h4>
+              <p>Estatística aplicada</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="matriz-ingles" id="matrizIngles">
+        <div class="modal">
+          <div class="header-modal">
+            <h4>Aviso</h4>
+          </div>
+
+          <div class="body-modal">
+            <p>              
+              Não há matrizes em inglês na sua unidade.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="../JS/scriptHome.js"></script>
