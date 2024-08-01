@@ -1,3 +1,5 @@
+var iconFolder = document.getElementById("iconFolder");
+
 document.addEventListener('DOMContentLoaded', function () {
     const avisoClick = document.getElementById('avisoSide');
     const matriculaClick = document.getElementById('matriculaSide');
@@ -19,9 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const bibliotecaDiv = document.getElementById('biblioteca');
     const uploadDiv = document.getElementById('upload');
     const planoEnsinoDiv = document.getElementById('planoEnsino');
-    const matrizDiv = document.getElementById('matrizIngles');
-
-    const open = document.getElementById('openSidebar');
+    const matrizDiv = document.getElementById('matrizIngles');    
 
     matriculaDiv.style.display = 'none';
     consultaDiv.style.display = 'none';
@@ -35,15 +35,16 @@ document.addEventListener('DOMContentLoaded', function () {
 
     avisoDiv.style.display = 'block';
 
-    dropdownClick()    
-    openSidebarMobile()
-});
 
+    openSidebarMobile()
+    closeSidebarMobile()
+    closeSidebar()
+    dropdownClick()
+});
 
 function toggleDropdown() {
     var dropdownContent = document.getElementById("dropdown-content");
-    var iconFolder = document.getElementById("iconFolder");
-    
+
     if (dropdownContent.classList.contains("show")) {
         dropdownContent.classList.remove("show");
         iconFolder.classList.remove("fa-regular", "fa-folder-open");
@@ -69,18 +70,38 @@ window.onclick = function (event) {
 
 function openSidebarMobile() {
     const open = document.getElementById('openSidebar');
+    const close = document.getElementById('close');
 
     const sidebar = document.getElementById('sidebarMobile');
 
-    open.addEventListener('click', () => { 
-        console.log(sidebar.style.display)
+    open.addEventListener('click', () => {
 
-        if (sidebar.style.display === '') {
+        if (sidebar.style.display === '' || sidebar.style.display === 'none') {
             sidebar.style.display = 'block';
+            close.style.display = 'block';
             sidebar.style.backgroundColor = '#FFF';
         }
+    })
 
-     })
+}
+
+function closeSidebarMobile() {
+    const close = document.getElementById('close');
+
+    const sidebar = document.getElementById('sidebarMobile');
+
+    close.addEventListener('click', () => {
+        if (sidebar.style.display === 'block') {
+            sidebar.style.display = 'none';
+        }
+    })
+}
+
+function closeSidebar() {
+    const sidebar = document.getElementById('sidebarMobile');
+    sidebar.style.display = 'none';
+    iconFolder.classList.remove("fa-regular", "fa-folder-open");
+    iconFolder.classList.add("fa-solid", "fa-folder");
 }
 
 function dropdownClick() {
@@ -123,6 +144,8 @@ function dropdownClick() {
             uploadDiv.style.display = 'none';
             planoEnsinoDiv.style.display = 'none';
             matrizDiv.style.display = 'none';
+
+
         }
     })
 
@@ -148,9 +171,9 @@ function dropdownClick() {
         if (consultaDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
-            consultaDiv.style.display = 'block';            
+            consultaDiv.style.display = 'block';
             agendaDiv.style.display = 'none';
             segurancaDiv.style.display = 'none';
             solicitacaoDiv.style.display = 'none';
@@ -165,10 +188,10 @@ function dropdownClick() {
         if (agendaDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
             consultaDiv.style.display = 'none';
-            agendaDiv.style.display = 'block';            
+            agendaDiv.style.display = 'block';
             segurancaDiv.style.display = 'none';
             solicitacaoDiv.style.display = 'none';
             bibliotecaDiv.style.display = 'none';
@@ -182,10 +205,10 @@ function dropdownClick() {
         if (segurancaDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
             consultaDiv.style.display = 'none';
-            agendaDiv.style.display = 'none';            
+            agendaDiv.style.display = 'none';
             segurancaDiv.style.display = 'block';
             solicitacaoDiv.style.display = 'none';
             bibliotecaDiv.style.display = 'none';
@@ -199,10 +222,10 @@ function dropdownClick() {
         if (solicitacaoDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
             consultaDiv.style.display = 'none';
-            agendaDiv.style.display = 'none';            
+            agendaDiv.style.display = 'none';
             segurancaDiv.style.display = 'none';
             solicitacaoDiv.style.display = 'block';
             bibliotecaDiv.style.display = 'none';
@@ -216,10 +239,10 @@ function dropdownClick() {
         if (bibliotecaDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
             consultaDiv.style.display = 'none';
-            agendaDiv.style.display = 'none';            
+            agendaDiv.style.display = 'none';
             segurancaDiv.style.display = 'none';
             solicitacaoDiv.style.display = 'none';
             bibliotecaDiv.style.display = 'flex';
@@ -233,10 +256,10 @@ function dropdownClick() {
         if (uploadDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
             consultaDiv.style.display = 'none';
-            agendaDiv.style.display = 'none';            
+            agendaDiv.style.display = 'none';
             segurancaDiv.style.display = 'none';
             solicitacaoDiv.style.display = 'none';
             bibliotecaDiv.style.display = 'none';
@@ -250,10 +273,10 @@ function dropdownClick() {
         if (planoEnsinoDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
             consultaDiv.style.display = 'none';
-            agendaDiv.style.display = 'none';            
+            agendaDiv.style.display = 'none';
             segurancaDiv.style.display = 'none';
             solicitacaoDiv.style.display = 'none';
             bibliotecaDiv.style.display = 'none';
@@ -267,10 +290,10 @@ function dropdownClick() {
         if (matrizDiv.style.display === 'block') {
             return
         } else {
-            matriculaDiv.style.display = 'none';            
+            matriculaDiv.style.display = 'none';
             avisoDiv.style.display = 'none';
             consultaDiv.style.display = 'none';
-            agendaDiv.style.display = 'none';            
+            agendaDiv.style.display = 'none';
             segurancaDiv.style.display = 'none';
             solicitacaoDiv.style.display = 'none';
             bibliotecaDiv.style.display = 'none';
@@ -280,3 +303,22 @@ function dropdownClick() {
         }
     })
 }
+
+const dropdownElements = [
+    document.getElementById('avisoSide'),
+    document.getElementById('matriculaSide'),
+    document.getElementById('consultaSide'),
+    document.getElementById('agendaSide'),
+    document.getElementById('segurancaSide'),
+    document.getElementById('solicitacoesSide'),
+    document.getElementById('bibliotecaSide'),
+    document.getElementById('uploadSide'),
+    document.getElementById('planoEnsinoSide'),
+    document.getElementById('matrizSide')
+];
+
+dropdownElements.forEach(element => {
+    element.addEventListener('click', () => {
+        closeSidebar();
+    });
+});
