@@ -98,6 +98,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
+      margin-bottom: 20px;
     }
 
     .dados-curso div {
@@ -367,7 +368,6 @@
         align-items: center;
         padding: 10px 20px;
         box-shadow: 2px 2px 10px #7e7e7e;
-        /* Adiciona espaço para a borda da sidebar */
       }
 
       .navbar-mobile img {
@@ -386,13 +386,16 @@
       }
 
       .nav-links-mobile {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         color: #7e7e7e;
         margin: 0;
         padding: 0;
         list-style: none;
       }
 
-      .unidade img {
+      .unidade span {
         display: none;
       }
 
@@ -401,6 +404,7 @@
       }
 
       .sidebar-mobile {
+        text-align: center;
         display: none;
         height: 100%;
         width: 280px;
@@ -412,6 +416,18 @@
         padding-top: 20px;
         overflow-x: hidden;
         padding: 30px;
+      }
+
+      .unidade-mobile {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: rgb(104, 104, 104);
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
       }
 
       .container {
@@ -431,17 +447,30 @@
         z-index: 1000;
       }
 
-      .sidebar-mobile .dropdown {
-        padding-bottom: 70px;
+      .footer-mobile img {
+        width: 150px;
+        margin-left: 20px;
+        margin-right: 20px;
+        padding: 5px;
       }
+
+      .sidebar-mobile .dropdown {
+        padding-bottom: 100px;
+        margin-bottom: 50px;
+      }
+      
 
       .avisos-mobile {
         display: none;
       }
-      
+
+      .text-veteranos-mobile {
+        display: none;
+      }
+
     }
 
-    @media (max-width: 450px) {
+    @media (max-width: 500px) {
       .unidade {
         display: none;
       }
@@ -466,6 +495,18 @@
         border-top: 1px solid #8f8f8fa2;
         margin-top: 20px;
         padding-top: 15px;
+      }
+
+      .unidade-mobile {
+        display: flex;
+        flex-direction: column;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: rgb(104, 104, 104);
+        text-align: center;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
       }
 
       .sidebar-mobile .integralizacao {
@@ -493,10 +534,10 @@
         display: none;
       }
 
-      .body-avisos h4{
+      .body-avisos h4 {
         display: flex;
         align-items: center;
-        justify-content: center;        
+        justify-content: center;
       }
 
       .consultas .options {
@@ -600,6 +641,19 @@
     </div>
     <hr />
 
+    <div class="unidade-mobile">
+      <span>Faculdade de Tecnologia <br> de Cotia</span>      
+      <span>
+        Tecnologia em Desenvolvimento de Software Multiplataforma
+      </span>
+      <span>
+        Status: Em Curso 
+      </span>        
+      <span>
+        Turno: <b>Noite</b>
+      </span>
+    </div>
+    <hr>
     <h3>Rendimento no curso:</h3>
 
     <div class="dados-curso">
@@ -610,10 +664,11 @@
       <div><span>PR (intercâmbio):</span><span>7,86000</span></div>
     </div>
 
+    <hr>
     <h4>Prazo de Integralização:</h4>
     <div class="integralizacao">
-      <span>Cursado: 3 | </span>
-      <span>Máximo: 10 | </span>
+      <span>Cursado: 3 </span>
+      <span>Máximo: 10 </span>
       <span>Faltam: 7</span>
     </div>
     <br />
@@ -755,7 +810,7 @@
       <div class="body-avisos">
         <h4>Prezados(as) alunos(as):</h4>
         <p class="text-veteranos-mobile"><b>VETERANOS: </b> <br>
-        *Rematrícula de 22 a 28/07/2024</p>
+          *Rematrícula de 22 a 28/07/2024</p>
 
         <p class="text-veteranos"><b>VETERANOS: </b> *Rematrícula de 22 a 28/07/2024</p>
 
