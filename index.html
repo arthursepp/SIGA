@@ -13,20 +13,26 @@
         .logo {
             display: flex;
             align-items: center;
-            justify-content: center;
-            margin: 20px;
+            justify-content: center;     
+            margin-bottom: 20px;       
         }
 
         .container {
+            position: fixed;
+            height: 90%;
+            width: 100%;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 70vh;            
+            align-items: center;            
         }
 
         .form-login {
-            text-align: center;
-            border: 2px solid #bbb;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;            
+            border: 1px solid #bbb;
+            box-shadow: 0 0 10px #bbb;
             padding: 20px;
         }
 
@@ -35,6 +41,14 @@
             padding: 4px;
             border: 1px solid #bbb;
             font-size: 20px;
+            width: 350px;
+            cursor: pointer;
+            transition: border 0.3s ease;
+        }
+
+        .form-login input:hover, .form-login input:focus {
+            border: 1px solid rgb(54, 108, 255);
+            outline: none;
         }
 
         .form-login button {
@@ -43,6 +57,10 @@
             color: #FFF;
             padding: 10px;
             border: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-radius: 50px;
         }
 
         .form-login button:hover {
@@ -51,23 +69,32 @@
             cursor: pointer;
         }
 
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
     </style>
 </head>
-<body>   
-
-    <div class="logo">
-        <img src="./IMG/logosiga.png" alt="">
-    </div>
-
+<body>       
     <div class="container">        
         
         <div class="form-login">
-            <h3>Login</h3>
-            <span>Usuário</span>
-            <input type="text" name="" id="" required minlength="1" maxlength="11">
-            <br>
-            <span>Senha</span>
-            <input type="password" name="" id="" required>
+            <div class="logo">
+                <img src="./IMG/logosiga.png" alt="">
+            </div>
+            <h2>Login</h2>
+            
+            <div class="input-field">
+                <span>Usuário</span>
+                <input type="text" name="" id="" required minlength="1" maxlength="11">
+            </div>
+            
+            <div class="input-field">
+                <span>Senha</span>
+                <input type="password" name="" id="" required>
+            </div>
             <br>
             <a href="./aluno/home.html">
                 <button type="button" class="btnConfirm">Confirmar</button>

@@ -77,6 +77,149 @@
       .open-menu:hover .fa-folder-open {
         color: #000;
       }
+
+      .item-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        padding: 15px;
+      }
+
+      .item-menu:hover {
+        background-color: lightgray;
+      }
+
+      .item-menu i {
+        font-size: 18px;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        margin-top: 70px;
+        margin-left: 350px;
+        padding: 10px;
+      }
+
+      .custom-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        font-size: 18px;
+        text-align: left;
+      }
+
+      .custom-table th,
+      .custom-table td {
+        padding: 12px 15px;
+        border: 1px solid #ddd;
+      }
+
+      .custom-table thead tr {
+        background-color: rgb(66, 148, 255);
+        color: #fff;
+      }
+
+      .custom-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+        cursor: pointer;
+      }
+
+      .custom-table tbody tr:hover {
+        background-color: #f1f1f1;
+        cursor: pointer;
+      }
+
+      .custom-checkbox {
+        display: inline-block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 22px;
+        user-select: none;
+      }
+
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+        height: 0;
+        width: 0;
+      }
+
+      .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        background-color: #ccc;
+      }
+
+      .custom-checkbox:hover input ~ .checkmark {
+        background-color: #b3b3b3;
+      }
+
+      .custom-checkbox input:checked ~ .checkmark {
+        background-color: rgb(66, 148, 255);
+      }
+
+      .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+      }
+
+      .custom-checkbox input:checked ~ .checkmark:after {
+        display: block;
+      }
+
+      .custom-checkbox .checkmark:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        transform: rotate(45deg);
+      }
+      
+      .aprovado {
+        background-color: rgba(172, 255, 47, 0.822);
+      }
+      
+       .reprovado {
+        background-color: rgba(255, 111, 111, 0.822);
+       }
+      
+      .em-curso {
+        background-color: rgba(174, 230, 252, 0.822);
+      }
+      
+      .dispensado {
+        background-color: rgba(0, 128, 0, 0.822);
+        color: #fff;
+      }
+
+      .grid-materias {
+        display: grid;
+        margin: auto;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+        gap: 5px;
+      }
+
+      .card-grid-materias {
+        width: 190px;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        border-radius: 20px;
+      }
     </style>
   </head>
   <body>
@@ -108,205 +251,592 @@
       <img src="../IMG/logosiga.png" alt="" />
     </div>
 
-    <div class="container" style="margin-top: 55px">
+    <div
+      class="sidebar"
+      style="
+        position: fixed;
+        left: 0;
+        height: 100%;
+        width: 350px;
+        padding: 20px;
+        border-right: 1px solid #ccc;
+        background-color: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        overflow-y: auto;
+        z-index: 998;
+      "
+    >
+      <div class="btn-logout">
+        <a href="" class="logout">
+          <i class="fa fa-power-off"></i>
+          <span>Sair</span>
+        </a>
+      </div>
+
+      <div class="img-aluno" style="margin: 30px auto 0 auto">
+        <img
+          src="../IMG/imgAluno.jpg"
+          alt=""
+          style="border: 1px solid #ccc; padding: 3px"
+          width="180px"
+        />
+      </div>
+
       <div
-        class="sidebar"
+        class="dados-aluno"
         style="
-          position: relative;
-          left: 0;
-          height: 100%;
-          width: 350px;
-          padding: 20px;
-          border-right: 1px solid #ccc;
-          background-color: #fff;
-          box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+          margin: 20px auto 0 auto;
           display: flex;
           flex-direction: column;
-          overflow-y: auto;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          gap: 20px;
+          border-bottom: 1.5px solid rgb(167, 167, 167);
         "
       >
-        <div class="btn-logout">
-          <a href="" class="logout">
-            <i class="fa fa-power-off"></i>
-            <span>Sair</span>
-          </a>
-        </div>
+        <span>
+          <b> ARTHUR SOUZA SEPP </b>
+        </span>
 
-        <div class="img-aluno" style="margin: 30px auto 0 auto">
-          <img
-            src="../IMG/imgAluno.jpg"
-            alt=""
-            style="border: 1px solid #ccc; padding: 3px"
-            width="180px"
-          />
+        <span>E-mail:</span>
+
+        <span>email.de.exemplo@fatec.sp.gov.br</span>
+
+        <span>RA: 2701392313014</span>
+
+        <span style="margin-bottom: 20px">Ciclo: 5</span>
+      </div>
+
+      <div class="rendimento" style="margin-top: 15px">
+        <span style="font-size: 18px"><b>Rendimento no curso:</b></span>
+
+        <div
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 10px 0 0 0;
+          "
+        >
+          <div style="display: flex; justify-content: space-between">
+            <span>PP:</span>
+            <span>36,61%</span>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <span>PR:</span>
+            <span>7,57</span>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <span>Maior PR:</span>
+            <span>0,00</span>
+          </div>
+          <div style="display: flex; justify-content: space-between">
+            <span>PP (intercâmbio):</span>
+            <span>28,05836%</span>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              margin-bottom: 20px;
+            "
+          >
+            <span>PR (intercâmbio):</span>
+            <span>7,86000</span>
+          </div>
+        </div>
+      </div>
+
+      <span style="font-size: 18px"><b>Prazo de integralização:</b></span>
+      <div
+        class="dados-curso"
+        style="
+          margin-top: 15px;
+          border-bottom: 1px solid #ccc;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 5px;
+          padding-bottom: 10px;
+        "
+      >
+        <div
+          style="
+            display: flex;
+            border-right: 1px solid #ccc;
+            padding-right: 15px;
+          "
+        >
+          <span>Cursado: </span>
+          <span>3</span>
+        </div>
+        <div
+          style="
+            display: flex;
+            border-right: 1px solid #ccc;
+            padding-right: 15px;
+          "
+        >
+          <span>Cursado: </span>
+          <span>3</span>
+        </div>
+        <div style="display: flex; padding-right: 15px">
+          <span>Cursado: </span>
+          <span>3</span>
+        </div>
+      </div>
+
+      <div
+        class="menu"
+        style="display: flex; justify-content: center; margin-top: 20px"
+      >
+        <button class="open-menu" id="openMenu">
+          <i class="fa fa-folder" id="folder"></i>
+          <span>Menu</span>
+        </button>
+      </div>
+      <div
+        class="container-menu"
+        id="dropdownMenu"
+        style="
+          display: none;
+          gap: 10px;
+          flex-direction: column;
+          position: relative;
+          margin: 0 auto 20px auto;
+          border: 1px solid #ccc;
+          background-color: rgb(250, 250, 250);
+          height: fit-content;
+          width: 250px;
+          padding: 20px;
+        "
+      >
+        <div class="item-menu" id="linkMatricula">
+          <span>Matrícula</span>
+          <i class="fa fa-graduation-cap"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkConsultas">
+          <span>Consultas</span>
+          <i class="fa fa-circle-info"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkAgenda">
+          <span>Agenda</span>
+          <i class="fa fa-calendar-day"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkSeguranca">
+          <span>Segurança</span>
+          <i class="fa fa-lock"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkSolicitacoes">
+          <span>Solicitações</span>
+          <i class="fa fa-comments"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkBiblioteca">
+          <span>Biblioteca</span>
+          <i class="fa fa-book"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkUpload">
+          <span>Upload de arquivos</span>
+          <i class="fa fa-upload"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkPlanos">
+          <span>Planos de ensino</span>
+          <i class="fa fa-school"></i>
+        </div>
+        <hr />
+
+        <div class="item-menu" id="linkMatriz">
+          <span>Matriz em inglês</span>
+          <i class="fa fa-flag-usa"></i>
+        </div>
+      </div>
+      <br />
+      <br />
+    </div>
+
+    <div class="container">
+      <div class="consultas" id="consultas">
+        <div
+          class="avisos"
+          id="avisos"
+          style="display: none; flex-direction: column"
+        >
+          <div
+            style="
+              text-align: center;
+              border-bottom: 1px solid #000;
+              padding: 10px;
+            "
+          >
+            <h1>Avisos</h1>
+          </div>
+
+          <div class="avisos-body" style="overflow-y: auto">
+            <div style="margin-top: 15px">
+              <h3>Prezados alunos(as):</h3>
+            </div>
+
+            <div style="padding-left: 20px">
+              <div
+                style="
+                  margin-top: 15px;
+                  display: flex;
+                  flex-direction: column;
+                  border-bottom: 1px solid #000;
+                  padding-bottom: 20px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    margin-bottom: 30px;
+                  "
+                >
+                  <span style="font-size: 20px; font-weight: bold"
+                    >VETERANOS:</span
+                  >
+                  <span>Rematrícula de 22 a 28/07/2024</span>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    gap: 15px;
+                    color: gray;
+                  "
+                >
+                  <ul>
+                    <li>
+                      <span>Rematrícula diretamente pelo SIGA.</span>
+                    </li>
+                    <li>
+                      <span
+                        >Dúvidas devem ser dirigidas para a secretaria
+                        acadêmica</span
+                      >
+                    </li>
+                    <li>
+                      <span>WhatsApp (11)4616-3284</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div style="display: flex; gap: 5px; margin-top: 30px">
+                  <span style="margin-left: 20px">
+                    <i class="fa fa-arrow-right"></i>
+                    O início das aulas será em:
+                  </span>
+                  <span style="font-weight: bold; color: red"> 05/08/24 </span>
+                </div>
+              </div>
+
+              <div
+                style="
+                  margin-top: 15px;
+                  display: flex;
+                  flex-direction: column;
+                  border-bottom: 1px solid #000;
+                  padding-bottom: 20px;
+                "
+              >
+                <div style="display: flex; flex-direction: column; gap: 20px">
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: column;
+                      gap: 15px;
+                      border-bottom: 1px solid grey;
+                      padding-bottom: 15px;
+                    "
+                  >
+                    <h3>Aos calouros:</h3>
+
+                    <div
+                      style="display: flex; flex-direction: column; gap: 20px"
+                    >
+                      <span>
+                        Tragam novas energias e desfrute dessa experiência
+                        acadêmina universitária. Não deixe de se empenhar e não
+                        desista nos primeiros desafios.
+                      </span>
+
+                      <span>
+                        Aqui temos muito orgulho de ser
+                        <span style="color: rgb(66, 148, 255)"
+                          >#FatecCotia</span
+                        >
+                      </span>
+                    </div>
+                  </div>
+
+                  <div style="display: flex; flex-direction: column; gap: 20px">
+                    <h3>Aos veteranos:</h3>
+
+                    <span>
+                      Força, foco e fé. O pior já passou! Logo estaremos
+                      comemorando, juntos, na formatura, com muito orgulho dessa
+                      trajetória!
+                    </span>
+                  </div>
+
+                  <div class="">
+                    <span
+                      >A secretaria acadêmica sempre estará à disposição para
+                      melhor atendê-los!</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                style="
+                  display: flex;
+                  font-style: italic;
+                  color: rgb(179, 179, 179);
+                  margin-top: 20px;
+                "
+              >
+                <span>ASS: Renan Ruivo Silva</span>
+              </div>
+
+              <!-- <div style="margin-top: 15px; display: flex; flex-direction: column; border-bottom: 1px solid #000; padding-bottom: 20px;">
+
+              </div> -->
+            </div>
+          </div>
         </div>
 
         <div
-          class="dados-aluno"
-          style="
-            margin: 20px auto 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            gap: 20px;
-            border-bottom: 1.5px solid rgb(167, 167, 167);
-          "
+          class="historico"
+          id="historico"
+          style="overflow-y: auto; display: none"
         >
-          <span>
-            <b> ARTHUR SOUZA SEPP </b>
-          </span>
+          <h2 style="margin-top: 20px">Extrato histórico simples:</h2>
 
-          <span>E-mail:</span>
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Sigla</th>
+                <th>Disciplina</th>
+                <th>Período</th>
+                <th>Aprovado</th>
+                <th>Média final</th>
+                <th>Frequência (%)</th>
+                <th>Observação</th>
+              </tr>
+            </thead>
 
-          <span>email.de.exemplo@fatec.sp.gov.br</span>
+            <tbody>
+              <tr>
+                <td>AGO021</td>
+                <td>Gestão Ágil de Projetos de Software</td>
+                <td>20241</td>
+                <td>
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      name="aprovado"
+                      id="aprovado"
+                      disabled
+                      readonly
+                      checked
+                    />
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+                <td>7.1</td>
+                <td>90.00%</td>
+                <td>Aprovado por Nota e Frequência</td>
+              </tr>
 
-          <span>RA: 2701392313014</span>
+              <tr>
+                <td>ESM100</td>
+                <td>
+                  Estágio Supervisionado em Desenvolvimento de Software
+                  multiplataforma
+                </td>
+                <td>20242</td>
+                <td>
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      name="aprovado"
+                      id="aprovado"
+                      disabled
+                      readonly
+                    />
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+                <td>--</td>
+                <td>--</td>
+                <td>Em curso</td>
+              </tr>
 
-          <span style="margin-bottom: 20px">Ciclo: 5</span>
-        </div>
-
-        <div class="rendimento" style="margin-top: 15px">
-          <span style="font-size: 18px"><b>Rendimento no curso:</b></span>
+              <tr>
+                <td>IAL010</td>
+                <td>Algorítmos e Lógica de Programação</td>
+                <td>20231</td>
+                <td>
+                  <label class="custom-checkbox">
+                    <input
+                      type="checkbox"
+                      name="aprovado"
+                      id="aprovado"
+                      disabled
+                      readonly
+                      checked
+                    />
+                    <span class="checkmark"></span>
+                  </label>
+                </td>
+                <td>10.0</td>
+                <td>95.00%</td>
+                <td>Aprovado por Nota e Frequência</td>
+              </tr>
+            </tbody>
+          </table>
 
           <div
             style="
               display: flex;
               flex-direction: column;
-              gap: 15px;
-              margin: 10px 0 0 0;
+              gap: 10px;
+              color: rgb(109, 109, 109);
             "
           >
-            <div style="display: flex; justify-content: space-between">
-              <span>PP:</span>
-              <span>36,61%</span>
-            </div>
-            <div style="display: flex; justify-content: space-between">
-              <span>PR:</span>
-              <span>7,57</span>
-            </div>
-            <div style="display: flex; justify-content: space-between">
-              <span>Maior PR:</span>
-              <span>0,00</span>
-            </div>
-            <div style="display: flex; justify-content: space-between">
-              <span>PP (intercâmbio):</span>
-              <span>28,05836%</span>
-            </div>
-            <div
-              style="
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 20px;
-              "
+            <span>**NÃO POSSUI VALIDADE COMO HISTÓRICO ESCOLAR</span>
+            <span
+              >**VALORES TEMPORÁRIOS E SUJEITOS À ALTERAÇÃO SEM AVISO
+              PRÉVIO</span
             >
-              <span>PR (intercâmbio):</span>
-              <span>7,86000</span>
+          </div>
+        </div>
+
+        <div class="historico-grade" id="historicoGrade">
+          <h2 style="margin-top: 20px">Histórico em grade:</h2>
+
+          <div
+            style="
+              border: 1px solid #ccc;
+              width: fit-content;
+              padding: 10px;
+              display: flex;
+              flex-direction: column;
+              gap: 20px;
+            "
+          >
+            <div>
+              <span>NF: Nota Final</span>
+              <span>FR: Frequência (%)</span>
+              <span>PE: Período (Ano/Semestre)</span>
+              <span>AE: Aproveitamento de estudo</span>
+            </div>
+            <div>
+              <span
+                style="
+                  background-color: rgba(172, 255, 47, 0.822);
+                  padding: 8px;
+                "
+                >Aprovado</span
+              >
+              <span style="border: 1px solid #000; padding: 8px"
+                >Não cursada</span
+              >
+              <span
+                style="
+                  background-color: rgba(174, 230, 252, 0.822);
+                  padding: 8px;
+                "
+                >Em curso</span
+              >
+              <span
+                style="
+                  background-color: rgba(255, 111, 111, 0.822);
+                  padding: 8px;
+                "
+                >Reprovado por nota</span
+              >
+              <span
+                style="
+                  color: #fff;
+                  background-color: rgba(0, 128, 0, 0.822);
+                  padding: 8px;
+                "
+                >Dispensado</span
+              >
             </div>
           </div>
+
+          <div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr; text-align: center;">
+            <h4>Semestre 1</h4>
+            <h4>Semestre 2</h4>
+            <h4>Semestre 3</h4>
+            <h4>Semestre 4</h4>
+            <h4>Semestre 5</h4>
+            <h4>Semestre 6</h4>
+          </div>
+          <div class="grid-materias">
+            <div class="card-grid-materias aprovado">
+              <div></div>
+            </div>
+            
+          </div>
+
         </div>
 
-        <span style="font-size: 18px"><b>Prazo de integralização:</b></span>
-        <div
-          style="
-            margin-top: 15px;
-            border-bottom: 1px solid #ccc;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 5px;
-            padding-bottom: 10px;
-          "
-        >
-          <div
-            style="
-              display: flex;
-              border-right: 1px solid #ccc;
-              padding-right: 15px;
-            "
-          >
-            <span>Cursado: </span>
-            <span>3</span>
-          </div>
-          <div
-            style="
-              display: flex;
-              border-right: 1px solid #ccc;
-              padding-right: 15px;
-            "
-          >
-            <span>Cursado: </span>
-            <span>3</span>
-          </div>
-          <div style="display: flex; padding-right: 15px">
-            <span>Cursado: </span>
-            <span>3</span>
-          </div>
-        </div>
+        <div class="historico-completo" id="historicoCompleto"></div>
 
-        <div
-          class="menu"
-          style="display: flex; justify-content: center; margin-top: 20px"
-        >
-          <button class="open-menu" id="openMenu">
-            <i class="fa fa-folder" id="folder"></i>
-            <span>Menu</span>
-          </button>
+        <div class="horario" id="horario"></div>
 
-          <div 
-            class="container-menu"
-            id="dropdownMenu" 
-            style="              
-              position: absolute;
-              background-color: whitesmoke; 
-              border: 1px solid #ccc;
-              box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-              margin-top: 30px;                            
-              width: 70%;
-              padding: 15px;
-              z-index: 1;
-              display: none;
-              gap: 30px;
-            "
-          >
-            
-              <span>Matrícula</span>
-            
-            
-              <span>Consultas</span>
-            
-            
-              <span>Agenda</span>
-            
-            
-              <span>Segurança</span>
-            
-            
-              <span>Solicitações</span>
-            
-            
-              <span>Biblioteca</span>
-            
-            
-              <span>Upload de arquivos</span>
-            
-            
-              <span>Planos de ensino</span>
-            
-            
-              <span>Matriz em inglês</span>
-              
-          </div>
-        </div>
+        <div class="notas-parciais" id="notasParciais"></div>
+
+        <div class="faltas-parciais" id="faltasParciais"></div>
       </div>
+
+      <div class="agenda" id="agenda"></div>
+
+      <div class="seguranca" id="seguranca"></div>
+
+      <div class="solicitacoes" id="solicitacoes"></div>
+
+      <div class="biblioteca" id="biblioteca"></div>
+
+      <div class="uploads" id="uploads"></div>
+
+      <div class="planos-de-ensino" id="planosEnsino"></div>
+
+      <div class="matriz-em-ingles" id="matrizIngles"></div>
+      <!-- -------------------------------------------------------- -->
+      <div class="path-avisos" id="pathAvisos"></div>
+
+      <div class="path-agenda"></div>
     </div>
 
     <script>
       function operateMenu() {
         const open = document.getElementById("openMenu");
         const dropdownMenu = document.getElementById("dropdownMenu");
-        const folder = document.getElementById('folder');
+        const folder = document.getElementById("folder");
 
         open.addEventListener("click", () => {
           if (
@@ -315,12 +845,12 @@
           ) {
             dropdownMenu.style.display = "flex";
             dropdownMenu.style.flexDirection = "column";
-            folder.classList.remove('fa-folder')
-            folder.classList.add('fa-folder-open');
+            folder.classList.remove("fa-folder");
+            folder.classList.add("fa-folder-open");
           } else {
             dropdownMenu.style.display = "none";
-            folder.classList.remove('fa-folder-open')
-            folder.classList.add('fa-folder');
+            folder.classList.remove("fa-folder-open");
+            folder.classList.add("fa-folder");
           }
         });
 
@@ -331,8 +861,8 @@
           ) {
             if (dropdownMenu.style.display == "flex") {
               dropdownMenu.style.display = "none";
-              folder.classList.remove('fa-folder-open')
-              folder.classList.add('fa-folder');
+              folder.classList.remove("fa-folder-open");
+              folder.classList.add("fa-folder");
             }
           }
         };
