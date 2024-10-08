@@ -203,27 +203,43 @@
         color: #fff;
       }
 
-      .grid-materias {
-        display: grid;
+      .table-materias {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+        align-items: center;
+      }
+
+      .table-materias th, .table-materias td {
+        padding: 10px;        
+      }
+
+      .card-materia {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #ccc;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);        
+        padding: 10px;
+        width: 210px;
+        border-radius: 20px;
         margin: auto;
-        grid-template-columns: repeat(6, 1fr);
-        grid-template-rows: repeat(8, 1fr);
+        gap: 5px;
+        justify-content: space-between;      
+        height: 220px;  
+      }
+
+      .dados-materia {
+        display: flex; 
+        flex-direction: column; 
+        border-right: 1px solid grey;
+        padding-right: 10px;
         gap: 5px;
       }
 
-      .card-grid-materias {
-        width: 190px;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        border-radius: 20px;
-      }
     </style>
   </head>
   <body>
-    <div
+    <div class="navbar"
       style="
         display: flex;
         justify-content: space-between;
@@ -251,8 +267,7 @@
       <img src="../IMG/logosiga.png" alt="" />
     </div>
 
-    <div
-      class="sidebar"
+    <div class="sidebar"    
       style="
         position: fixed;
         left: 0;
@@ -625,8 +640,7 @@
           </div>
         </div>
 
-        <div
-          class="historico"
+        <div class="historico"          
           id="historico"
           style="overflow-y: auto; display: none"
         >
@@ -732,7 +746,7 @@
           </div>
         </div>
 
-        <div class="historico-grade" id="historicoGrade">
+        <div class="historico-grade" id="historicoGrade" style="overflow-y: auto;">
           <h2 style="margin-top: 20px">Histórico em grade:</h2>
 
           <div
@@ -787,21 +801,225 @@
             </div>
           </div>
 
-          <div style="display: grid; grid-template-columns: repeat(6, 1fr); grid-template-rows: 1fr; text-align: center;">
-            <h4>Semestre 1</h4>
-            <h4>Semestre 2</h4>
-            <h4>Semestre 3</h4>
-            <h4>Semestre 4</h4>
-            <h4>Semestre 5</h4>
-            <h4>Semestre 6</h4>
-          </div>
-          <div class="grid-materias">
-            <div class="card-grid-materias aprovado">
-              <div></div>
-            </div>
-            
-          </div>
+          <table class="table-materias">
+            <thead style="text-align: center;">
+              <tr>
+                <td>
+                  <h4>Semestre 1</h4>
+                </td>
+                <td>
+                  <h4>Semestre 2</h4>
+                </td>
+                <td>
+                  <h4>Semestre 3</h4>
+                </td>
+                <td>
+                  <h4>Semestre 4</h4>
+                </td>
+                <td>
+                  <h4>Semestre 5</h4>
+                </td>
+                <td>
+                  <h4>Semestre 6</h4>
+                </td>
+              </tr>
+            </thead>
 
+            <tbody>
+              <tr>
+                <td>
+                  <div class="card-materia aprovado">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>IAL010</span>
+                      <span>AS: 4</span>
+                    </div>
+
+                    <div style="margin: 20px 0 20px 0;">
+                      <span>Algorítmos e Lógica de Programação</span>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                      <span>Situação:</span>
+                      <span>Aprovado</span>
+                    </div>
+
+                    <div style="margin: 10px 0 10px 0; border: 1px solid #ccc;">
+                      
+                    </div>
+
+                    <div style="display: flex; gap: 20px; justify-content: center; text-align: center;">
+                      <div class="dados-materia">
+                        <span>NF: </span>
+                        <span>6.8</span>
+                      </div>
+
+                      <div class="dados-materia">
+                        <span>FR:</span>
+                        <span>90%</span>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <span>PE:</span>
+                        <span>20231</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-materia aprovado">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>IBD015</span>
+                      <span>AS: 4</span>
+                    </div>
+
+                    <div style="margin: 20px 0 20px 0;">
+                      <span>Banco de dados: Relacional</span>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                      <span>Situação:</span>
+                      <span>Aprovado</span>
+                    </div>
+
+                    <div style="margin: 10px 0 10px 0; border: 1px solid #ccc;">
+                      
+                    </div>
+
+                    <div style="display: flex; gap: 20px; justify-content: center; text-align: center;">
+                      <div class="dados-materia">
+                        <span>NF: </span>
+                        <span>7.2</span>
+                      </div>
+
+                      <div class="dados-materia">
+                        <span>FR:</span>
+                        <span>100%</span>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <span>PE:</span>
+                        <span>20232</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-materia aprovado">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>AGO021</span>
+                      <span>AS: 4</span>
+                    </div>
+
+                    <div style="margin: 20px 0 20px 0;">
+                      <span>Gestão ágil de projetos de software</span>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                      <span>Situação:</span>
+                      <span>Aprovado</span>
+                    </div>
+
+                    <div style="margin: 10px 0 10px 0; border: 1px solid #ccc;">
+                      
+                    </div>
+
+                    <div style="display: flex; gap: 20px; justify-content: center; text-align: center;">
+                      <div class="dados-materia">
+                        <span>NF: </span>
+                        <span>7.1</span>
+                      </div>
+
+                      <div class="dados-materia">
+                        <span>FR:</span>
+                        <span>90%</span>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <span>PE:</span>
+                        <span>20241</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-materia em-curso">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>IAL011</span>
+                      <span>AS: 4</span>
+                    </div>
+
+                    <div style="margin: 20px 0 20px 0;">
+                      <span>Internet das coisas e aplicações</span>
+                    </div>
+
+                    <div style="display: flex; gap: 10px;">
+                      <span>Situação:</span>
+                      <span>Em curso</span>
+                    </div>
+
+                    <div style="margin: 10px 0 10px 0; border: 1px solid #ccc;">
+                      
+                    </div>
+
+                    <div style="display: flex; gap: 20px; justify-content: center; text-align: center;">
+                      <div class="dados-materia">
+                        <span>NF: </span>
+                        <span>0.00</span>
+                      </div>
+
+                      <div class="dados-materia">
+                        <span>FR:</span>
+                        <span>0%</span>
+                      </div>
+
+                      <div style="display: flex; flex-direction: column; gap: 5px;">
+                        <span>PE:</span>
+                        <span>20242</span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  <div class="card-materia">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>IAL010</span>
+                      <span>AS: 4</span>
+                    </div>
+
+                    <div style="margin: 20px 0 20px 0; height: 100%;">
+                      <span>Programação para dispositívos móveis II</span>
+                    </div>                    
+                  </div>
+                </td>
+
+                <td>
+                  <div class="card-materia">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>DDI09</span>
+                      <span>AS: 2</span>
+                    </div>
+
+                    <div style="margin: 20px 0 20px 0; height: 100%;">
+                      <span>Ética profissional e patente</span>
+                    </div>                    
+                  </div>
+                </td>
+              </tr>
+
+              <tr>
+                <td>
+                  <div class="card-materia">
+                    <div style="display: flex; justify-content: space-between;">
+                      <span>IAL010</span>
+                      <span>AS: 4</span>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+          
         </div>
 
         <div class="historico-completo" id="historicoCompleto"></div>
