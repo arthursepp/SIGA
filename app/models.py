@@ -73,7 +73,7 @@ class Aluno(AbstractUser):
         verbose_name_plural = 'Alunos'
     
     def __str__(self):
-        return self.username
+        return self.get_full_name()
 
 class Professor(AbstractUser):
     
@@ -97,7 +97,18 @@ class Professor(AbstractUser):
         verbose_name_plural = 'Professores'
     
     def __str__(self):
-        return self.username
+        return self.get_full_name()
+
+class Secretaria(AbstractUser):    
+    cpf = models.CharField(max_length=11)
+    unidade = models.ForeignKey(Unidade, on_delete=models.CASCADE, related_name='secretarios')
+    
+    class Meta:
+        verbose_name = 'Secretaria'
+        verbose_name_plural = 'Secretarias'
+        
+    def __str__(self):
+        return self.get_full_name()
 
 class Atividade(models.Model):
     nome = models.CharField(max_length=100)
