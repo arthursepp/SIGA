@@ -1,7 +1,3 @@
-from django.db import models
-
-# Create your models here.
-# models.py
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
@@ -14,24 +10,20 @@ class Aviso(models.Model):
     def __str__(self):
         return f'{self.unidade}: {self.titulo} - {self.data}'
     
-class Unidade(models.Model):
-    nome = models.CharField(max_length=100)
-    endereco = models.CharField(max_length=255)
-    professores = models.ManyToManyField('Professor', blank=True)  # Referencia o modelo Professor por string
-    cursos = models.ManyToManyField('Curso', blank=True)  # Corrige o nome do campo
-
-    def alterar_situacao_aluno(self, aluno, situacao):
-        if situacao in ['ativo', 'trancado']:
-            aluno.status = situacao
-            aluno.save()
+class Unidade(models.Model):    
+    cidade = models.CharField(max_length=100)
+    endereco = models.CharField(max_length=255)    
+    cursos = models.ManyToManyField('Curso', blank=True, related_name='unidades')
     
     def __str__(self):
-        return f'Fatec {self.nome}'
+        return f'Fatec {self.cidade}'
 
 class Curso(models.Model):
     nome = models.CharField(max_length=100)
     duracao_anos = models.IntegerField()
     duracao_semestres = models.IntegerField()
+    periodo_choices = [('manha', 'Manhã'), ('tarde', 'Tarde'), ('noite', 'Noite')]
+    periodo = models.CharField(choices=periodo_choices, max_length=10)
     
     def __str__(self):
         return self.nome
@@ -39,6 +31,51 @@ class Curso(models.Model):
 class Materia(models.Model):
     nome = models.CharField(max_length=100)
     curso = models.ForeignKey(Curso, related_name='materias', on_delete=models.CASCADE)
+    semestre = models.IntegerField()    
+    professor = models.ForeignKey('Professor', on_delete=models.SET_NULL, null=True, blank=True, related_name='materias_professor')
+    
+    def __str__(self):
+        return self.nome
+    
+class Aluno(models.Model):
+    nome = models.CharField(max_length=100)
+    sobrenome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True)
+    email = models.EmailField(unique=True)
+    unidade = models.ForeignKey(Unidade, on_delete=models.CASCADE, related_name='alunos')
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='alunos')
+    semestre_atual = models.IntegerField()
+    media_final = models.FloatField(default=0.0)
+    status_choices = [('ATIVO', 'Ativo'), ('TRANCADO', 'Trancado'), ('FORMADO', 'Formado')]
+    status = models.CharField(max_length=8, choices=status_choices, default='ATIVO')
+    
+    def __str__(self):
+        return f'{self.nome} {self.sobrenome}'
+
+class Professor(models.Model):   
+    nome = models.CharField(max_length=100)
+    sobrenome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True)
+    email = models.EmailField(unique=True)
+    unidade = models.ForeignKey(Unidade, on_delete=models.CASCADE, related_name='professores')
+    materias = models.ManyToManyField('Materia', blank=True, related_name='professores_materias')
+    
+    def __str__(self):
+        return f'{self.nome} {self.sobrenome}'
+
+class Secretaria(models.Model):    
+    nome = models.CharField(max_length=100)
+    sobrenome = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=11, unique=True)
+    unidade = models.ForeignKey(Unidade, on_delete=models.CASCADE, related_name='secretarios')
+        
+    def __str__(self):
+        return f'{self.nome} {self.sobrenome}'
+
+class Matricula(models.Model):
+    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE, related_name='matriculas')
+    materia = models.ForeignKey('Materia', on_delete=models.CASCADE, related_name='matriculas')
+    frequencia = models.FloatField(default=0.0)
     status_choices = [
         ('em_andamento', 'Em Andamento'),
         ('concluido', 'Concluído'),
@@ -46,80 +83,6 @@ class Materia(models.Model):
         ('nao_cursado', 'Não cursado'),
     ]
     status = models.CharField(max_length=15, choices=status_choices, default='nao_cursado')
-    professor = models.ForeignKey('Professor', on_delete=models.SET_NULL, null=True, blank=True)
-    
-    def __str__(self):
-        return self.nome
-    
-class Aluno(AbstractUser):
-    # ...
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='aluno_set',  # Define um nome específico para o Aluno
-        blank=True,
-        help_text='The groups this user belongs to.',
-        related_query_name='aluno',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='aluno_permissions',  # Define um nome específico para o Aluno
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_query_name='aluno',
-    )
-    
-    class Meta:
-        verbose_name = 'Aluno'
-        verbose_name_plural = 'Alunos'
-    
-    def __str__(self):
-        return self.get_full_name()
-
-class Professor(AbstractUser):
-    
-    groups = models.ManyToManyField(
-        'auth.Group',
-        related_name='professor_set',  # Define um nome específico para o Professor
-        blank=True,
-        help_text='The groups this user belongs to.',
-        related_query_name='professor',
-    )
-    user_permissions = models.ManyToManyField(
-        'auth.Permission',
-        related_name='professor_permissions',  # Define um nome específico para o Professor
-        blank=True,
-        help_text='Specific permissions for this user.',
-        related_query_name='professor',
-    )
-    
-    class Meta:
-        verbose_name = 'Professor'
-        verbose_name_plural = 'Professores'
-    
-    def __str__(self):
-        return self.get_full_name()
-
-class Secretaria(AbstractUser):    
-    cpf = models.CharField(max_length=11)
-    unidade = models.ForeignKey(Unidade, on_delete=models.CASCADE, related_name='secretarios')
-    
-    class Meta:
-        verbose_name = 'Secretaria'
-        verbose_name_plural = 'Secretarias'
-        
-    def __str__(self):
-        return self.get_full_name()
-
-class Atividade(models.Model):
-    nome = models.CharField(max_length=100)
-    nota = models.FloatField()
-    materia = models.ForeignKey(Materia, on_delete=models.CASCADE)
-    aluno = models.ForeignKey(Aluno, related_name='atividades', on_delete=models.CASCADE)
-
-class Matricula(models.Model):
-    aluno = models.ForeignKey(Aluno, on_delete=models.CASCADE)
-    materia = models.ForeignKey('Materia', on_delete=models.CASCADE)
-    frequencia = models.FloatField(default=0.0)
     
     class Meta:
         unique_together = ('aluno', 'materia')
