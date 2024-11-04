@@ -1,9 +1,10 @@
-from django.urls import path
+
 from . import views
-from django.contrib.auth.models import User
+from django.urls import path, include
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('home/<str:username>/', views.home, name='home'),
+    # path('login/', views.login, name='login'),
+    path('home/', views.home, name='home'),
 ]
 
