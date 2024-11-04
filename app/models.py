@@ -38,14 +38,14 @@ class Materia(models.Model):
         return self.nome
     
 class Aluno(models.Model):
-    user = models.OneToOneField('User', on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     nome = models.CharField(max_length=100)
     sobrenome = models.CharField(max_length=100)
     cpf = models.CharField(max_length=11, unique=True)
     email = models.EmailField(unique=True)
-    unidade = models.ForeignKey(Unidade, on_delete=models.CASCADE, related_name='alunos')
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='alunos')
-    semestre_atual = models.IntegerField()
+    unidade = models.ForeignKey(Unidade, on_delete=models.CASCADE, related_name='alunos', blank=True, null=True)
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='alunos', blank=True, null=True)
+    semestre_atual = models.IntegerField(blank=True, null=True)
     media_final = models.FloatField(default=0.0)
     status_choices = [('ATIVO', 'Ativo'), ('TRANCADO', 'Trancado'), ('FORMADO', 'Formado')]
     status = models.CharField(max_length=8, choices=status_choices, default='ATIVO')

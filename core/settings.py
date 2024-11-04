@@ -17,6 +17,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -26,12 +27,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #------------------------------
+    #---------------------------------
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    #------------------------------
+    #---------------------------------
     'app',
 ]
 
@@ -118,14 +119,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Alterações personalizadas:
+# Configurações personalizadas
+SITE_ID = 1
 
-SITE_ID=1
-
-AUTHENTICATION_BACKENDS = (
-    'allauth.account.auth_backends.AuthenticationBackend',
-)
-
-LOGIN_REDIRECT_URL = '/home/'
-ACCOUNT_LOGOUT_REDIRECT = '/accounts/login/'
-ACCOUNT_EMAIL_REQUIRED = True
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'login/'

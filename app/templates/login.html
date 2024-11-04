@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <style>
+        /* Estilos existentes */
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;     
+            margin-bottom: 20px;       
+        }
+
+        .container {
+            position: fixed;
+            height: 90%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;            
+        }
+
+        .form-login {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;            
+            border: 1px solid #bbb;
+            box-shadow: 0 0 10px #bbb;
+            padding: 20px;
+        }
+
+        .form-login input {
+            margin-bottom: 20px;
+            padding: 4px;
+            border: 1px solid #bbb;
+            font-size: 20px;
+            width: 350px;
+            cursor: pointer;
+            transition: border 0.3s ease;
+        }
+
+        .form-login input:hover, .form-login input:focus {
+            border: 1px solid rgb(54, 108, 255);
+            outline: none;
+        }
+
+        .form-login button {
+            margin-bottom: 20px;
+            background-color: rgb(54, 108, 255);
+            color: #FFF;
+            padding: 10px;
+            border: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-radius: 50px;
+        }
+
+        .form-login button:hover {
+            background-color: #bbb;
+            color: #000;
+            cursor: pointer;
+        }
+
+        .input-field {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>       
+    <div class="container">        
+        <form method="post" action="{% url 'login' %}" class="form-login">
+            {% csrf_token %}
+            <div class="logo">
+                <img src="./IMG/logosiga.png" alt="">
+            </div>
+            <h2>Login</h2>
+            {{ form.as_p }}            
+            <br>            
+            <button type="submit" class="btnConfirm">Confirmar</button>            
+
+            <br>
+            <a href="#">Solução para problemas no acesso</a>
+            <br>
+            
+        </div>        
+    </div>
+
+    <script src="./JS/script.js"></script>
+</body>
+</html>
