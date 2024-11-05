@@ -45,7 +45,10 @@ class Materia(models.Model):
     nome = models.CharField(max_length=100)
     professor = models.ForeignKey('Professor', on_delete=models.CASCADE, related_name='materias_professor', blank=True, null=True)  # Ajuste do related_name
     curso = models.ForeignKey('Curso', on_delete=models.CASCADE, related_name='materias_curso', blank=True, null=True)  # Ajuste do related_name
-    semestre = models.PositiveIntegerField()
+    semestre = models.PositiveIntegerField(default=1)
+    
+    status_choices = [('ABERTA', 'Aberta'), ('FECHADA', 'Fechada')]
+    status = models.CharField(max_length=7, choices=status_choices, default='ATIVA')
     
     def clean(self):
         if self.curso and self.semestre > self.curso.duracao_semestres:
@@ -90,8 +93,34 @@ class Desempenho(models.Model):
     notas = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
     data = models.DateField(auto_now_add=True)
     
+    status_choices = [
+        ('APROVADO', 'Aprovado'),
+        ('REPROVADO', 'Reprovado'),
+        ('DISPENSADO', 'Dispensado'),
+        ('EM ANDAMENTO', 'Em andamento')
+    ]
+    
+    status = models.CharField(max_length=15, choices=status_choices, default='EM ANDAMENTO')
+    
     class Meta:
         unique_together = ('aluno', 'materia')
         
+    def definir_status(self):
+        if self.materia.status == 'FECHADA' and self.notas is not None and self.notas >= 6.0:
+            self.status = 'APROVADO'
+            
+        elif self.materia.status == 'FECHADA' and self.notas is not None and self.notas < 6.0:
+            self.status = 'REPROVADO'
+            
+        elif self.materia.status == 'FECHADA' and self.presencas < 75:
+            self.status = 'REPROVADO'
+            
+        elif self.materia.status == 'FECHADA' and self.presencas >= 75:
+            self.status = 'APROVADO'
+            
+    def save(self, *args, **kwargs):
+        self.definir_status()
+        super().save(*args, **kwargs)
+    
     def __str__(self):
         return f'{self.aluno} - {self.materia} - {self.data}'
