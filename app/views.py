@@ -4,4 +4,4 @@ def index(request):
     return redirect('accounts/login')
 
 def aluno(request):
-    pass
+    return render(request, 'aluno.html')

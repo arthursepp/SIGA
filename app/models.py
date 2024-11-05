@@ -1,5 +1,6 @@
 from django.db import models
 import datetime
+from django.core.exceptions import ValidationError
 
 class Unidade(models.Model):
     cidade = models.CharField(max_length=100)
@@ -31,7 +32,11 @@ class Curso(models.Model):
     def validar_duracao(self):
         semestres = self.duracao_semestres
         anos = self.duracao_anos
-        return semestres <= (anos * 2)
+        
+        if semestres != anos * 2:
+            raise ValidationError(
+                f'A duração do curso deve ser de {anos} anos, ou seja, {anos * 2} semestres.'
+            )
     
     def __str__(self):
         return f'{self.sigla} - {self.nome}'
@@ -40,6 +45,14 @@ class Materia(models.Model):
     nome = models.CharField(max_length=100)
     professor = models.ForeignKey('Professor', on_delete=models.CASCADE, related_name='materias_professor', blank=True, null=True)  # Ajuste do related_name
     curso = models.ForeignKey('Curso', on_delete=models.CASCADE, related_name='materias_curso', blank=True, null=True)  # Ajuste do related_name
+    semestre = models.PositiveIntegerField()
+    
+    def clean(self):
+        if self.curso and self.semestre > self.curso.duracao_semestres:
+            raise ValidationError(
+                f'O curso "{self.curso}" possui apenas {self.curso.duracao_semestres} semestres.'
+                f'Não é possível cadastrar uma matéria no {self.semestre}º semestre.'
+            )
     
     def __str__ (self):
         return self.nome
@@ -64,5 +77,21 @@ class Aluno(models.Model):
     email = models.EmailField()
     curso = models.ForeignKey('Curso', on_delete=models.CASCADE, related_name='alunos_curso', blank=True, null=True)  # Ajuste do related_name
     
+    status_choices = [('ATIVO', 'Ativo'), ('TRANCADO', 'Trancado'), ('FORMADO', 'Formado')]
+    status = models.CharField(max_length=8, choices=status_choices, default='ATIVO')
+    
     def __str__(self):
         return f'{self.nome} {self.sobrenome}'
+
+class Desempenho(models.Model):
+    aluno = models.ForeignKey('Aluno', on_delete=models.CASCADE, related_name='desempenho', blank=True, null=True)
+    materia = models.ForeignKey('Materia', on_delete=models.CASCADE, related_name='desempenho', blank=True, null=True)
+    presencas = models.IntegerField()
+    notas = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True)
+    data = models.DateField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('aluno', 'materia')
+        
+    def __str__(self):
+        return f'{self.aluno} - {self.materia} - {self.data}'
